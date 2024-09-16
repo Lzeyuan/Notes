@@ -3,16 +3,16 @@
 layout: home
 
 hero:
-  name: "Leza Notes"
-  text: "A Note Site"
-  tagline: My great project tagline
+  name: "Leza"
+  text: "构建知识库"
+  tagline: 数着一圈圈年轮
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: 后端
+      link: /zh/back-end/mybatis
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: DevOps
+      link: /zh/devops/linux-common
 
 features:
   - title: Feature A

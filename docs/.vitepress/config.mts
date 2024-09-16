@@ -1,29 +1,76 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig, type DefaultTheme } from 'vitepress'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Leza Notes",
+  head: [["link", { rel: "icon", href: "/Notes/logo.gif" }]],
+  title: "Leza笔记",
   description: "A Note Site",
   base: '/Notes/',
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
-    ],
-
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
+    logo: "/logo.gif",
+    nav: nav(),
+    sidebar:
+    {
+      '/zh/back-end/': { base: '/zh/back-end/', items: sidebarBackEnd() },
+      '/zh/devops/': { base: '/zh/devops/', items: sidebarDevOps() }
+    },
+    footer: {
+      message: '基于 MIT 许可发布',
+      copyright: `版权所有 © 2024-${new Date().getFullYear()} leza`
+    },
+    docFooter: {
+      prev: '上一页',
+      next: '下一页'
+    },
+    outline: {
+      label: '页面导航',
+      level: 'deep'
+    },
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: 'short',
+        timeStyle: 'medium'
       }
-    ],
-
+    },
+    langMenuLabel: '多语言',
+    returnToTopLabel: '回到顶部',
+    sidebarMenuLabel: '菜单',
+    darkModeSwitchLabel: '主题',
+    lightModeSwitchTitle: '切换到浅色模式',
+    darkModeSwitchTitle: '切换到深色模式',
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/Lzeyuan' }
     ]
   }
 })
+function nav(): DefaultTheme.NavItem[] {
+  return [
+    {
+      text: '后端',
+      link: '/zh/back-end/mybatis'
+    },
+    {
+      text: 'DevOps',
+      link: '/zh/devops/linux-common'
+    }
+  ]
+
+
+}
+function sidebarBackEnd(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'SpringBoot',
+      collapsed: false,
+      items: [
+        { text: 'MyBatis', link: 'mybatis' }
+      ]
+    }]
+}
+function sidebarDevOps(): DefaultTheme.SidebarItem[] {
+  return [
+    { text: '常用配置', link: 'linux-common' },
+    { text: '网络设置', link: 'network' },
+    { text: 'Docker', link: 'docker' }
+  ]
+}
