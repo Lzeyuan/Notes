@@ -21,7 +21,7 @@ sudo netplan apply
 >
 
 ### Netplan
-Netplan是一层抽象，后端可以使用：networkd、networking、NetworkManager
+Netplan是一层抽象，后端可以使用：`networkd`、`networking`、`NetworkManager`
 ```yaml
 # vi /etc/netpaln/[配置文件.yaml]
 network:
@@ -45,6 +45,42 @@ network:
       optional: true
 # 保存后sudo netplan apply
 ```
+
+### 防火墙ufw
+ufw默认 `inactive` 状态，要 `sudo ufw enable` 启动。
+
+`sudo vi /etc/default/ufw` 修改 `IPV6=yes` 开启ipv6。
+```bash
+# 默认配置：deny (incoming), allow (outgoing), deny (routed)
+# 开启防火墙
+sudo ufw default allow ssh
+sudo ufw enable
+sudo ufw default reload
+
+# 添加放行端口
+sudo ufw allow allow 80/tcp
+# 批量放行
+sudo ufw allow 6000:6007/udp
+
+# 添加放行IP
+sudo ufw allow from 203.0.113.4
+
+# 允许从网卡为eth1和IP为192.168.1.100进入的所有流量访问3306端口
+sudo ufw allow in on eth1 from 192.168.1.100 to any port 3306
+
+# deny同理
+
+# 查看防火墙序号
+sudo ufw status numbered
+# 查看添加的规则
+sudo ufw show added
+# 删除规则
+sudo ufw delete [序号]
+sudo ufw delete allow [ufw syntax]
+```
+
+## Redhat
+基于rocky linux 9实测
 ### 防火墙
 ```bash
 # 重新加载防火墙配置
