@@ -4,7 +4,7 @@ export default defineConfig({
   head: [["link", { rel: "icon", href: "/Notes/logo.gif" }]],
   title: "Leza笔记",
   description: "A Note Site",
-  base: '/Notes/',
+  base: '/',
   themeConfig: {
     logo: "/logo.gif",
     nav: nav(),
