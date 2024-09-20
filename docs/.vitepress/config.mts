@@ -60,7 +60,8 @@ function nav(): DefaultTheme.NavItem[] {
 function sidebarBackEnd(): DefaultTheme.SidebarItem[] {
   return [
     { text: 'MyBatis', link: 'mybatis' },
-    { text: 'SpringBoot', link: 'spring-boot/spring-boot' }
+    { text: 'SpringBoot', link: 'spring-boot/spring-boot' },
+    { text: 'SpingSecurity', link: 'sping-security/sping-security' }
   ]
 
 }
