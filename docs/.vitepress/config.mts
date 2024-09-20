@@ -59,17 +59,14 @@ function nav(): DefaultTheme.NavItem[] {
 }
 function sidebarBackEnd(): DefaultTheme.SidebarItem[] {
   return [
-    {
-      text: 'SpringBoot',
-      collapsed: false,
-      items: [
-        { text: 'MyBatis', link: 'mybatis' }
-      ]
-    }]
+    { text: 'MyBatis', link: 'mybatis' },
+    { text: 'SpringBoot', link: 'spring-boot/spring-boot' }
+  ]
+
 }
 function sidebarDevOps(): DefaultTheme.SidebarItem[] {
   return [
-    { text: '常用配置', link: 'linux-common' },
+    { text: 'Linux常用配置', link: 'linux-common' },
     { text: '网络设置', link: 'network' },
     { text: 'Docker', link: 'docker' }
   ]

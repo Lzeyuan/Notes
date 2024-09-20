@@ -9,7 +9,7 @@ MyBatis 最佳搭档，只做增强不做改变，为简化开发、提高效率
 #### 代码生成
 详细看[配置文档](https://baomidou.com/reference/new-code-generator-configuration/)
 ```java
-package site.leza.ring;
+package site.leza.utility;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
@@ -18,33 +18,61 @@ import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.fill.Column;
 import com.baomidou.mybatisplus.generator.fill.Property;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyBatisPlusGenerateCode {
     public static void main(String[] args) {
+        generateWebAdmin();
+    }
+    private static void generateWebAdmin() {
         String mysqlUrl = "jdbc:mysql://192.168.1.40:3306/ring" +
                 "?useUnicode=true&characterEncoding=utf-8" +
                 "&useSSL=false&timezone=Asia/Shanghai";
-        FastAutoGenerator.create(mysqlUrl, "qweqwe", "asdasd")
+        String[] tables = {"user", "item"};
+
+        Path rootPath = Paths.get(System.getProperty("user.dir"));
+        String entityPath = rootPath + "/model/src/main/java/site/leza/ring/model/entity";
+
+        Path webAdminPath = rootPath.resolve("web/web-admin/src/main");
+        String mapperXmlPath = webAdminPath + "/resources/mapper";
+        String outputDir = webAdminPath + "/java";
+
+        Map<OutputFile, String> pathInfo = new HashMap<>();
+        pathInfo.put(OutputFile.xml, mapperXmlPath);
+        pathInfo.put(OutputFile.entity, entityPath);
+
+        FastAutoGenerator.create(mysqlUrl, "leza", "LIZIEN&2024")
                 .globalConfig(builder -> builder
                         .author("leza")
-                        .outputDir(Paths.get(System.getProperty("user.dir")) + "/src/main/java")
                         .commentDate("yyyy-MM-dd")
-                        .enableSwagger()
+                        .outputDir(outputDir)
+                        .enableSpringdoc()
+                        .disableOpenDir()
                 )
                 .packageConfig(builder -> builder
                         .parent("site.leza.ring")
-                        .entity("entity")
+                        .entity("model.entity")
                         .mapper("mapper")
-                        .pathInfo(Collections.singletonMap(OutputFile.xml, "src/main/resources/mapper"))
+                        .controller("controller")
+                        .pathInfo(pathInfo)
                         .xml("mapper.xml")
                 )
                 .strategyConfig(builder -> builder
+                        .addInclude(tables)
                         .serviceBuilder()
-                        .disableService()        // 不生成service
-                        .disableServiceImpl()    // 不生成service
+                        // 禁止生成service
+                        .disableService()
+                        .disableServiceImpl()
+                        .controllerBuilder()
+                        .enableRestStyle()
+                        // 禁止生成controller
+                        // .disable()
                         .entityBuilder()
+                        // 禁止生成entity
+                        // .disable()
                         .enableLombok()
                         .versionColumnName("version")
                         .logicDeleteColumnName("deleted")
@@ -55,6 +83,7 @@ public class MyBatisPlusGenerateCode {
                 .execute();
     }
 }
+
 ```
 
 ### Mapper5
