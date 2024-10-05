@@ -1,0 +1,13 @@
+[mysqld]
+skip-host-cache
+skip-name-resolve
+log-error=/var/log/mysql/error.log
+log_timestamps=SYSTEM
+explicit_defaults_for_timestamp=true
+
+[mysql]
+default-character-set=utf8mb4
+
+
+[client]
+default-character-set=utf8mb4

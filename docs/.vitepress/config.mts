@@ -69,6 +69,7 @@ function sidebarDevOps(): DefaultTheme.SidebarItem[] {
   return [
     { text: 'Linux常用配置', link: 'linux-common' },
     { text: '网络设置', link: 'network' },
-    { text: 'Docker', link: 'docker' }
+    { text: 'Docker', link: 'docker' },
+    { text: 'Mysql', link: 'mysql/mysql' },
   ]
 }

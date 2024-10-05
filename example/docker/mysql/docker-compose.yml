@@ -1,0 +1,16 @@
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: mysql_server_01
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - mysql_data:/var/log/mysql
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: root&2024
+volumes:
+  mysql_data:

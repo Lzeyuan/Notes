@@ -3,7 +3,18 @@
 ## 常用命令
 ```bash
 # 添加用户
-sudo adduser leza
+sudo adduser username
+# 修改密码
+sudo passwd username
+# 查看所有用户
+cat /etc/passwd
+# 查看用户所在组
+groups username
+# 添加root权限
+sudo vi /etc/sudoers
+username ALL=(ALL) ALL
+sudo usermod -aG wheel username
+
 
 # 查看硬盘容量
 df -h
@@ -87,3 +98,9 @@ Host tx-cloud
 | /opt	        | 第三方应用程序安装所存放的目录 |
 | /tmp	        | 存放系统的临时文件 |
 | /usr/loca/etc	| 程序配置文件 |
+
+## yum(dnf)代理
+```bash
+sudo vi /etc/yum.conf
+proxy=http://192.168.10.198:9999
+```

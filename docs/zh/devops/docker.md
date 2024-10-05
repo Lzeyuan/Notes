@@ -17,6 +17,8 @@ sudo vi /etc/docker/daemon.json
 # 重启docker服务
 sudo systemctl restart docker
 ```
+docker compose不受这个影响，而是受系统代理影响。
+
 ### Macvlan只支持linux
 详细见[Networking using a macvlan network](https://docs.docker.com/engine/network/tutorials/macvlan/)
 > The macvlan networking driver only works on Linux hosts, and is not supported on Docker Desktop for Mac, Docker Desktop for Windows, or Docker EE for Windows Server.
