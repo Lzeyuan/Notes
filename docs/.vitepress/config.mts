@@ -11,7 +11,8 @@ export default defineConfig({
     sidebar:
     {
       '/zh/back-end/': { base: '/zh/back-end/', items: sidebarBackEnd() },
-      '/zh/devops/': { base: '/zh/devops/', items: sidebarDevOps() }
+      '/zh/devops/': { base: '/zh/devops/', items: sidebarDevOps() },
+      '/zh/cpp/': { base: '/zh/cpp/', items: sidebarCpp() }
     },
     footer: {
       message: '基于 MIT 许可发布',
@@ -52,6 +53,10 @@ function nav(): DefaultTheme.NavItem[] {
     {
       text: 'DevOps',
       link: '/zh/devops/linux-common'
+    },
+    {
+      text: 'C++',
+      link: '/zh/cpp/xmake/xmake'
     }
   ]
 
@@ -71,5 +76,10 @@ function sidebarDevOps(): DefaultTheme.SidebarItem[] {
     { text: '网络设置', link: 'network' },
     { text: 'Docker', link: 'docker' },
     { text: 'Mysql', link: 'mysql/mysql' },
+  ]
+}
+function sidebarCpp(): DefaultTheme.SidebarItem[] {
+  return [
+    { text: 'xmake', link: 'xmake/xmake' },
   ]
 }
